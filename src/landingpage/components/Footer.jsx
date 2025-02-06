@@ -128,7 +128,7 @@ const Footer = () => {
                   <BiMapPin className="w-5 h-5" />
                   <h3 className="font-semibold text-lg">Registered office</h3>
                 </div>
-                <p className="text-sm">Andhra Pradesh - IN</p>
+                <p className="text-sm">{companyDetails.address}</p>
               </div>
               <div
                 className="text-black flex items-center justify-end gap-2 font-semibold text-lg cursor-pointer"
