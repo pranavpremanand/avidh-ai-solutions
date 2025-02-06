@@ -2,7 +2,7 @@ import { images } from "../constant";
 // import projectdone from "../assets/images/svg/projectsdone.svg";
 // import proteam from "../assets/images/svg/proteam.svg";
 // import customers from "../assets/images/svg/customers.svg";
-import backgroundimage from "../assets/images/overvaluesbg.png";
+import backgroundimage from "../assets/images/overvaluesbg.webp";
 import Counter from "./Counter";
 import { Link } from "react-router-dom";
 

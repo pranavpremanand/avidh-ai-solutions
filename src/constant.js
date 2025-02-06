@@ -6,7 +6,7 @@ import homepageoverimageone from "./assets/images/homepageoverimageone.png";
 import homepageoverimagetwo from "./assets/images/homepageoverimagetwo.jpeg";
 import homepagebackgroundvideo from "./assets/video/homepagebannervideo.mp4";
 import verticaldivider from "./assets/images/verticaldivider.png";
-import meetcompanyimageone from "./assets/images/meetcompanyimageone.png";
+import meetcompanyimageone from "./assets/images/meetcompanyimageone.webp";
 import meetcompanyimagetwo from "./assets/images/meetcompanyimagetwo.png";
 import meetcompanyimagethree from "./assets/images/meetcompanyimagethree.png";
 import facebookIcon from "./assets/images/facebook.png";
@@ -40,9 +40,9 @@ import sgamedevelopmentimage from "./assets/images/serviceimage/gamedevelopmenti
 import sblockchainimage from "./assets/images/serviceimage/blockchainimage.png";
 import scloudserviceimage from "./assets/images/serviceimage/cloudserviceimage.png";
 import scybersecurityimage from "./assets/images/serviceimage/cybersecurityimage.png";
-import aboutpageimageone from "./assets/images/aboutpageimageone.jpeg";
+import aboutpageimageone from "./assets/images/aboutpageimageone.webp";
 import companyachievementsimage from "./assets/images/companyachievementsimage.jpg";
-import aboutpageimagethree from "./assets/images/aboutpageimagethree.jpeg";
+import aboutpageimagethree from "./assets/images/aboutpageimagethree.webp";
 import aboutpageimagefour from "./assets/images/aboutpageimagefour.jpeg";
 import aboutpageimagetwo from "./assets/images/aboutpageimagetwo.png";
 import fullstart from "./assets/images/fullstar.png";
@@ -67,15 +67,15 @@ import cogwheel from "./assets/images/landingpage/cogwheel.png";
 import webLandingAbout from "./assets/images/webLandingAbout.png";
 import appLandingAbout from "./assets/images/appLandingAbout.png";
 import whychooseusbackground from "./assets/images/whychooseusbackground.png";
-import testimonialbackground from "./assets/images/testimonialbackground.png";
+import testimonialbackground from "./assets/images/testimonialbackground.webp";
 import Finetunedsolutionimg from "./assets/images/Finetunedsolutionimg.jpg";
 import Innovationfocused from "./assets/images/Innovationfocused.jpg";
-import Scalableframeworks from "./assets/images/Scalableframeworks.jpg";
+import Scalableframeworks from "./assets/images/Scalableframeworks.webp";
 import aboutusbanner from "./assets/images/aboutusbanner.png";
 import servicepagebanner from "./assets/images/servicepagebanner.png";
-import aiImage from "./assets/images/aiimageforcontact.png";
-import landingaboutpc from "./assets/images/landingaboutpc.png";
-import faqbg from "./assets/images/faqbg.png";
+import aiImage from "./assets/images/aiimageforcontact.webp";
+import landingaboutpc from "./assets/images/landingaboutpc.webp";
+import faqbg from "./assets/images/faqbg.webp";
 export const images = {
   Logo,
   phonenumbersvg,
