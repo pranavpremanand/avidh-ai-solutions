@@ -127,6 +127,7 @@ export const socialmediaIcons = [
 ];
 
 export const companyDetails = {
+  name: "Avidh AI Solutions",
   address:
     "A 43 Radhakrishna Society, Khodiyar Nagar Road, Varachha, Surat, Gujarat 395006",
   phone: "+917096723148",

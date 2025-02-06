@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { companyDetails } from "../../constant";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const ContactForm = () => {
   const navigate = useNavigate();
@@ -50,43 +51,40 @@ const ContactForm = () => {
     emailBody += "Phone: " + formData.contactNumber + "\n\n";
     emailBody += "Subject: " + formData.subject + "\n\n";
     emailBody += "Message:\n" + formData.message;
+
     var payload = {
       to: companyDetails.email,
-      // to: "remeesreme4u@gmail.com",
-      subject: "You have a new message from vollo inc",
+      subject: `You have a new message from ${companyDetails.name}`,
       body: emailBody,
+      name: companyDetails.name,
     };
-    await fetch("https://smtp-api-tawny.vercel.app/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => response.json())
-      .then(() => {
+    try {
+      const res = await axios.post(
+        "https://send-mail-redirect-boostmysites.vercel.app/send-email",
+        payload
+      );
+
+      if (res.data.success) {
         toast.success("Email sent successfully");
         navigate("/thank-you");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      })
-      .finally(() => {
-        // alert("Form submitted successfully!");
-        // Reset form
-        setFormData({
-          fullName: "",
-          contactNumber: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-        setErrors({});
-        setSpinner(false);
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    } finally {
+      setFormData({
+        fullName: "",
+        contactNumber: "",
+        email: "",
+        subject: "",
+        message: "",
       });
+      setErrors({});
+      setSpinner(false);
+    }
   };
   const { pathname } = useLocation();
-  console.log(pathname, "aslkdfjaslkdf");
   return (
     <div
       className={`mt-10 sm:mt-20 sm:px-5 ${

@@ -1,6 +1,8 @@
+import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { companyDetails } from "../../constant";
 
 const LandingForm = () => {
   const navigate = useNavigate();
@@ -37,51 +39,51 @@ const LandingForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSpinner(true);
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
+
+    setSpinner(true);
     var emailBody = "Name: " + formData.fullName + "\n\n";
     emailBody += "Email: " + formData.email + "\n\n";
     emailBody += "Phone: " + formData.contactNumber + "\n\n";
     emailBody += "Subject: " + formData.subject + "\n\n";
     emailBody += "Message:\n" + formData.message;
+
     var payload = {
       to: companyDetails.email,
-      // to: "remeesreme4u@gmail.com",
-      subject: "You have a new message from vollo inc",
+      subject: `You have a new message from ${companyDetails.name}`,
       body: emailBody,
+      name: companyDetails.name,
     };
-    await fetch("https://smtp-api-tawny.vercel.app/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => response.json())
-      .then(() => {
+
+    try {
+      const res = await axios.post(
+        "https://send-mail-redirect-boostmysites.vercel.app/send-email",
+        payload
+      );
+
+      if (res.data.success) {
         toast.success("Email sent successfully");
         navigate("/thank-you");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      })
-      .finally(() => {
-        // alert("Form submitted successfully!");
-        // Reset form
-        setFormData({
-          fullName: "",
-          contactNumber: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-        setErrors({});
-        setSpinner(false);
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (err) {
+      toast.error("Something went wrong");
+    } finally {
+      setFormData({
+        fullName: "",
+        contactNumber: "",
+        email: "",
+        subject: "",
+        message: "",
       });
+      setErrors({});
+      setSpinner(false);
+    }
   };
   return (
     <div className="adjustedwidth mx-auto mt-10  sm:mt-20 sm:px-5  pb-20">

@@ -29,9 +29,6 @@ const Header = () => {
                   className="h-[5rem] md:h-[7rem]"
                   alt="logo"
                 />
-                {/* <h1 className="text-[16px] sm:text-[32px] text-white font-bold min-w-[8rem]">
-                  Vollo Inc
-                </h1> */}
               </div>
             </Link>
           </div>
