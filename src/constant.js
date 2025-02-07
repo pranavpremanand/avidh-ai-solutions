@@ -1,4 +1,4 @@
-import Logo from "./assets/images/Logo/logo.png";
+import Logo from "./assets/images/Logo/Logo.png";
 import logoSquare from "./assets/images/Logo/logo-square.png";
 import phonenumbersvg from "./assets/images/svg/phonenumber.svg";
 import homepagebanner from "./assets/images/homepagebanner.jpeg";
