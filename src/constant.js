@@ -1,4 +1,5 @@
-import Logo from "./assets/images/Logo/logowithtext.png";
+import Logo from "./assets/images/Logo/logo.png";
+import logoSquare from "./assets/images/Logo/logo-square.png";
 import phonenumbersvg from "./assets/images/svg/phonenumber.svg";
 import homepagebanner from "./assets/images/homepagebanner.jpeg";
 import homepageaboutus from "./assets/images/homepageaboutus.png";
@@ -78,6 +79,7 @@ import landingaboutpc from "./assets/images/landingaboutpc.webp";
 import faqbg from "./assets/images/faqbg.webp";
 export const images = {
   Logo,
+  logoSquare,
   phonenumbersvg,
   homepagebanner,
   homepageaboutus,
@@ -129,7 +131,7 @@ export const socialmediaIcons = [
 export const companyDetails = {
   name: "Avidh AI Solutions",
   address:
-    "A 43 Radhakrishna Society, Khodiyar Nagar Road, Varachha, Surat, Gujarat 395006",
+    "Surat, Gujarat – IN",
   phone: "+917096723148",
   whatsapp: "917096723148",
   link: "🌐 Website: www.avidhaisolutions.com",

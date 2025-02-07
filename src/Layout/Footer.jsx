@@ -28,7 +28,7 @@ const socialLinks = [
 ];
 
 const Footer = () => {
-  const { Logo } = images;
+  const { logoSquare } = images;
   const { pathname } = useLocation();
   console.log(pathname, "asfasdf");
   return (
@@ -40,9 +40,9 @@ const Footer = () => {
         }`}
       >
         {/* Logo Section */}
-        <div className="bg-black w-full md:w-1/4 p-8 py-20  flex items-center justify-center">
+        <div className="bg-white w-full md:w-1/4 p-8 py-20  flex items-center justify-center">
           <Link href="/" className="text-white text-3xl font-light">
-            <img src={Logo} alt="logo" className="max-h-[10rem]" />
+            <img src={logoSquare} alt="logo" className="max-h-[10rem]" />
           </Link>
         </div>
 

@@ -2,9 +2,10 @@ import Drawer from "react-modern-drawer";
 import { Divide as Hamburger } from "hamburger-react";
 import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
-import { Link } from "react-scroll";
+import { Link as Scroll } from "react-scroll";
 import "react-modern-drawer/dist/index.css";
 import { images } from "../../constant";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,10 +15,6 @@ const Header = () => {
   };
 
   const options = [
-    {
-      name: "Home",
-      path: "banner",
-    },
     {
       name: "About Us",
       path: "about",
@@ -44,20 +41,23 @@ const Header = () => {
       <div className="py-4  border-x border-b backdrop-blur-sm border-customPurple rounded-b-xl  bg-headerandfooterbg bg-opacity-60   w-[90%] flex justify-between items-center gap-10 mx-auto">
         <div className="flex justify-between gap-2 text-white  items-center min-w-fit w-full  mx-5">
           <div className="min-w-fit h-[1rem] md:h-[5.75rem] flex items-center">
-            <Link smooth={true} to="banner" className="cursor-pointer">
+            <Scroll smooth={true} to="banner" className="cursor-pointer">
               <div className="flex justify-center items-center min-w-fit">
                 <img
                   src={Logo}
-                  className="h-[5rem] md:h-[7rem]"
+                  className="h-[1.25rem] md:h-[2rem]"
                   alt="logo"
                 />
               </div>
-            </Link>
+            </Scroll>
           </div>
 
           <div className="lg:flex items-center max-w-[662px] justify-around w-full min-w-fit hidden">
+            <Link to="/" className="link text-sm cursor-pointer">
+              Home
+            </Link>
             {options.map((option) => (
-              <Link
+              <Scroll
                 to={`${option.path}`}
                 className="link text-sm cursor-pointer"
                 key={option.path}
@@ -68,7 +68,7 @@ const Header = () => {
                 activeClass="active-link"
               >
                 {option.name}
-              </Link>
+              </Scroll>
             ))}
           </div>
 
@@ -83,7 +83,7 @@ const Header = () => {
               />
               <h3 className="min-w-fit">CALL US: +91-34343493493</h3>
             </div> */}
-            <Link
+            <Scroll
               to={`contact`}
               className="primary-btn text-sm"
               key={"contact"}
@@ -94,7 +94,7 @@ const Header = () => {
               activeClass="active-link"
             >
               GET STARTED
-            </Link>
+            </Scroll>
             {/* <div className="secondary-btn">GET STARTED</div> */}
           </div>
 
@@ -127,8 +127,14 @@ const Header = () => {
           </button>
         </div>
         <div className="flex flex-col gap-6">
+          <Link
+            to="/"
+            className="text-3xl text-white font-medium transition-colors duration-300 link"
+          >
+            Home
+          </Link>
           {options.map(({ name, path, id }) => (
-            <Link
+            <Scroll
               onClick={() => setIsOpen(false)}
               key={id}
               className="text-3xl text-white font-medium transition-colors duration-300 link"
@@ -139,7 +145,7 @@ const Header = () => {
               duration={1000}
             >
               {name}
-            </Link>
+            </Scroll>
           ))}
         </div>
       </Drawer>

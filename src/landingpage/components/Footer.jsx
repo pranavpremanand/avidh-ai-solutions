@@ -30,10 +30,6 @@ const socialLinks = [
 
 const options = [
   {
-    name: "Home",
-    path: "banner",
-  },
-  {
     name: "About Us",
     path: "about",
   },
@@ -52,7 +48,7 @@ const options = [
 ];
 
 const Footer = () => {
-  const { Logo } = images;
+  const { logoSquare } = images;
   const { pathname } = useLocation();
   console.log(pathname, "asfasdf");
   return (
@@ -64,9 +60,9 @@ const Footer = () => {
         }`}
       >
         {/* Logo Section */}
-        <div className="bg-black w-full md:w-1/4 p-8 flex items-center justify-center">
+        <div className="bg-white w-full md:w-1/4 p-8 flex items-center justify-center">
           <Link href="/" className="text-white text-3xl font-light">
-            <img src={Logo} alt="logo" className="max-h-[10rem]" />
+            <img src={logoSquare} alt="logo" className="max-h-[10rem]" />
           </Link>
         </div>
 
@@ -96,6 +92,12 @@ const Footer = () => {
 
             {/* Navigation Links */}
             <div className="space-y-4">
+              <Link
+                to="/"
+                className="link block font-semibold text-lg hover:underline cursor-pointer"
+              >
+                Home
+              </Link>
               {options.map((option) => (
                 <ScrollLink
                   to={`${option.path}`}

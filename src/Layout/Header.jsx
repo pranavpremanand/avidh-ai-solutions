@@ -26,7 +26,7 @@ const Header = () => {
               <div className="flex justify-center items-center min-w-fit">
                 <img
                   src={Logo}
-                  className="h-[5rem] md:h-[7rem]"
+                  className="h-[1.25rem] md:h-[2rem]"
                   alt="logo"
                 />
               </div>
