@@ -130,12 +130,15 @@ export const socialmediaIcons = [
 
 export const companyDetails = {
   name: "Avidh AI Solutions",
-  address:
-    "Surat, Gujarat – IN",
+  address: "Surat, Gujarat – IN",
   phone: "+917096723148",
   whatsapp: "917096723148",
   link: "🌐 Website: www.avidhaisolutions.com",
   email: "example@xzy.com",
+  facebook: "https://www.facebook.com/profile.php?id=61571860417471",
+  instagram: "https://www.instagram.com/avidh_ai_solutions/",
+  linkedin: "https://www.linkedin.com/company/105894942/admin/dashboard/",
+  twitter: "https://x.com/AvidhAiSolution",
 };
 export const ourServices = [
   {

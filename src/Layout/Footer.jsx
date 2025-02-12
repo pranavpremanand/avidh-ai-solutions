@@ -14,17 +14,16 @@ import { FaBlogger, FaFacebook } from "react-icons/fa";
 const socialLinks = [
   // { href: `https://wa.me/${companyDetails.whatsapp}`, Icon: BsWhatsapp },
   {
-    href: ``,
+    href: `https://wa.me/${companyDetails.whatsapp}`,
     Icon: BsWhatsapp,
   },
-  { href: "", Icon: BsInstagram },
-  { href: "", Icon: BsTwitterX },
+  { href: companyDetails.instagram, Icon: BsInstagram },
+  { href: companyDetails.twitter, Icon: BsTwitterX },
   {
-    href: "",
+    href: companyDetails.facebook,
     Icon: FaFacebook,
   },
-  { href: "", Icon: BsLinkedin },
-  { href: "", Icon: FaBlogger },
+  { href: companyDetails.linkedin, Icon: BsLinkedin },
 ];
 
 const Footer = () => {
@@ -54,7 +53,7 @@ const Footer = () => {
               <h3 className="font-semibold text-lg">Get in Touch</h3>
               <div className="space-y-2">
                 <h4 className="font-semibold text-lg underline">Email</h4>
-                <p className="text-sm">abc@xyc.com</p>
+                <p className="text-sm">{companyDetails.email}</p>
               </div>
               {/* Social Icons */}
               <div className="flex items-center flex-wrap justify-center gap-4 bg-white rounded-full px-2 py-2 sm:w-fit w-full">

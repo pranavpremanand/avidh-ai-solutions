@@ -15,17 +15,16 @@ import { Link as ScrollLink } from "react-scroll";
 const socialLinks = [
   // { href: `https://wa.me/${companyDetails.whatsapp}`, Icon: BsWhatsapp },
   {
-    href: ``,
+    href: `https://wa.me/${companyDetails.whatsapp}`,
     Icon: BsWhatsapp,
   },
-  { href: "", Icon: BsInstagram },
-  { href: "", Icon: BsTwitterX },
+  { href: companyDetails.instagram, Icon: BsInstagram },
+  { href: companyDetails.twitter, Icon: BsTwitterX },
   {
-    href: "",
+    href: companyDetails.facebook,
     Icon: FaFacebook,
   },
-  { href: "", Icon: BsLinkedin },
-  { href: "", Icon: FaBlogger },
+  { href: companyDetails.linkedin, Icon: BsLinkedin },
 ];
 
 const options = [
