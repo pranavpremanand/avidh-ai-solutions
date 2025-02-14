@@ -3,58 +3,39 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { companyDetails } from "../../constant";
+import { useForm } from "react-hook-form";
 
 const LandingForm = () => {
   const navigate = useNavigate();
   const [spinner, setSpinner] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    contactNumber: "",
-    email: "",
-    subject: "",
-    message: "",
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    mode: "all",
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+    },
   });
 
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.fullName) newErrors.fullName = "Full name is required.";
-    if (!formData.contactNumber)
-      newErrors.contactNumber = "Contact number is required.";
-    if (!/^\d+$/.test(formData.contactNumber))
-      newErrors.contactNumber = "Contact number must be numeric.";
-    if (!formData.email) newErrors.email = "Email is required.";
-    if (!/\S+@\S+\.\S+/.test(formData.email))
-      newErrors.email = "Invalid email format.";
-    if (!formData.subject) newErrors.subject = "Subject is required.";
-    if (!formData.message) newErrors.message = "Message is required.";
-    return newErrors;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
+  const handleFormSubmit = async (values) => {
     setSpinner(true);
-    var emailBody = "Name: " + formData.fullName + "\n\n";
-    emailBody += "Email: " + formData.email + "\n\n";
-    emailBody += "Phone: " + formData.contactNumber + "\n\n";
-    emailBody += "Subject: " + formData.subject + "\n\n";
-    emailBody += "Message:\n" + formData.message;
 
+    var emailBody = "Name: " + values.name + "\n\n";
+    emailBody += "Email: " + values.email + "\n\n";
+    emailBody += "Phone Number: " + values.phone + "\n\n";
+    emailBody += "Message:\n" + values.message;
+
+    // Construct the request payload
     var payload = {
       to: companyDetails.email,
-      subject: `You have a new message from ${companyDetails.name}`,
+      subject: values.subject,
       body: emailBody,
       name: companyDetails.name,
     };
@@ -64,9 +45,9 @@ const LandingForm = () => {
         "https://send-mail-redirect-boostmysites.vercel.app/send-email",
         payload
       );
-
       if (res.data.success) {
         toast.success("Email sent successfully");
+        reset();
         navigate("/thank-you");
       } else {
         toast.error("Something went wrong");
@@ -74,14 +55,6 @@ const LandingForm = () => {
     } catch (err) {
       toast.error("Something went wrong");
     } finally {
-      setFormData({
-        fullName: "",
-        contactNumber: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-      setErrors({});
       setSpinner(false);
     }
   };
@@ -95,7 +68,10 @@ const LandingForm = () => {
           </h4>
         </div>
         <div data-aos="fade-up" className="w-full sm:px-0 px-3 md:w-1/2">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <form
+            onSubmit={handleSubmit(handleFormSubmit)}
+            className="flex flex-col gap-6"
+          >
             <div className="flex flex-col lg:flex-row gap-4">
               <div className="flex flex-col w-full">
                 <label htmlFor="fullName">Full Name</label>
@@ -103,14 +79,20 @@ const LandingForm = () => {
                   type="text"
                   name="fullName"
                   id="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
                   placeholder="Enter your Full Name"
                   className="rounded-lg pl-5 sm:py-4 py-3 focus:outline-none"
+                  {...register("name", {
+                    required: "Full name is required",
+                    validate: (val) => {
+                      if (val.trim() !== "") {
+                        return true;
+                      } else {
+                        return "Full name is required";
+                      }
+                    },
+                  })}
                 />
-                {errors.fullName && (
-                  <p className="text-red-500 text-sm">{errors.fullName}</p>
-                )}
+                <small className="text-red-400">{errors.name?.message}</small>
               </div>
               <div className="flex flex-col w-full">
                 <label htmlFor="contactNumber">Contact Number</label>
@@ -118,14 +100,17 @@ const LandingForm = () => {
                   type="text"
                   name="contactNumber"
                   id="contactNumber"
-                  value={formData.contactNumber}
-                  onChange={handleChange}
                   placeholder="Enter number"
                   className=" rounded-lg pl-5 m:py-4 py-3 focus:outline-none"
+                  {...register("phone", {
+                    required: "Phone number is required",
+                    pattern: {
+                      value: /^[0-9]{10}$/,
+                      message: "Invalid phone number",
+                    },
+                  })}
                 />
-                {errors.contactNumber && (
-                  <p className="text-red-500 text-sm">{errors.contactNumber}</p>
-                )}
+                <small className="text-red-400">{errors.phone?.message}</small>
               </div>
             </div>
 
@@ -135,14 +120,17 @@ const LandingForm = () => {
                 type="email"
                 name="email"
                 id="email"
-                value={formData.email}
-                onChange={handleChange}
                 placeholder="Enter your mail"
                 className="rounded-lg pl-5 m:py-4 py-3 focus:outline-none"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                    message: "Entered email is invalid",
+                  },
+                })}
               />
-              {errors.email && (
-                <p className="text-red-500 text-sm">{errors.email}</p>
-              )}
+              <small className="text-red-400">{errors.email?.message}</small>
             </div>
 
             <div className="flex flex-col">
@@ -151,14 +139,20 @@ const LandingForm = () => {
                 type="text"
                 name="subject"
                 id="subject"
-                value={formData.subject}
-                onChange={handleChange}
                 placeholder="Enter subject"
                 className=" rounded-lg pl-5 m:py-4 py-3 focus:outline-none"
+                {...register("subject", {
+                  required: "Subject is required",
+                  validate: (val) => {
+                    if (val.trim() !== "") {
+                      return true;
+                    } else {
+                      return "Subject is required";
+                    }
+                  },
+                })}
               />
-              {errors.subject && (
-                <p className="text-red-500 text-sm">{errors.subject}</p>
-              )}
+              <small className="text-red-400">{errors.subject?.message}</small>
             </div>
 
             <div className="flex flex-col">
@@ -166,15 +160,21 @@ const LandingForm = () => {
               <textarea
                 name="message"
                 id="message"
-                value={formData.message}
-                onChange={handleChange}
                 rows="5"
                 placeholder="Enter your massage"
                 className=" rounded-lg p-2 focus:outline-none"
-              ></textarea>
-              {errors.message && (
-                <p className="text-red-500 text-sm">{errors.message}</p>
-              )}
+                {...register("message", {
+                  required: "Message is required",
+                  validate: (val) => {
+                    if (val.trim() !== "") {
+                      return true;
+                    } else {
+                      return "Message is required";
+                    }
+                  },
+                })}
+              />
+              <small className="text-red-400">{errors.message?.message}</small>
             </div>
 
             <button
