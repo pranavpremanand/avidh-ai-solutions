@@ -73,7 +73,7 @@ const Footer = () => {
               <h3 className="font-semibold text-lg">Get in Touch</h3>
               <div className="space-y-2">
                 <h4 className="font-semibold text-lg underline">Email</h4>
-                <p className="text-sm">abc@zyc.com</p>
+                <p className="text-sm">{companyDetails.email}</p>
               </div>
               {/* Social Icons */}
               <div className="flex items-center flex-wrap justify-center gap-4 bg-white rounded-full px-2 py-2 sm:w-fit w-full">
